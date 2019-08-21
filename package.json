@@ -1,0 +1,44 @@
+{
+  "name": "meetapp-api",
+  "version": "1.0.0",
+  "description": "API rest of meetapp application",
+  "main": "src/app.js",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.2.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
+    "sucrase": "^3.10.1"
+  },
+  "scripts": {
+    "start": "nodemon --exec sucrase-node src/Server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matequeiroz/meetapp-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "js",
+    "expressjs",
+    "sequelize",
+    "rest",
+    "api",
+    "restfull",
+    "json"
+  ],
+  "author": "Mateus Queiroz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matequeiroz/meetapp-api/issues"
+  },
+  "homepage": "https://github.com/matequeiroz/meetapp-api#readme"
+}
