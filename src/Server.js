@@ -1,6 +1,11 @@
 import http from 'http';
 import app from './App';
 
+/**
+ * @author Mateus Queiroz
+ * This class is responsible
+ * for initializing our server.
+ */
 class Server {
   constructor() {
     this.server = http.createServer(app);
@@ -11,6 +16,7 @@ class Server {
     this.start();
   }
 
+  // initialized or fails server
   start() {
     this.server.listen(this.port || '3000');
     this.server.on('error', this.onError);
