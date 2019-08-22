@@ -1,10 +1,12 @@
 import express from 'express';
 import path from 'path';
 import logger from 'morgan';
+import dotenv from 'dotenv';
 import usersRouter from './routes/users';
 
 class App {
   constructor() {
+    dotenv.config();
     this.app = express();
     this.middlewares();
     this.routes();
