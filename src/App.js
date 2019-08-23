@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import User from './app/models/User';
 import credential from './database/config';
 import usersRouter from './routes/users';
+import sessionsRouter from './routes/sessions';
 
 /**
  * @author Mateus Queiroz
@@ -37,6 +38,7 @@ class App {
   // application route setup
   routes() {
     this.app.use('/user', usersRouter);
+    this.app.use('/login', sessionsRouter);
   }
 
   // configuration database
