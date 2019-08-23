@@ -1,11 +1,9 @@
 import express from 'express';
-import User from '../app/models/User';
+import UserController from '../app/controllers/UserController';
 
 const router = express.Router();
 
 /* GET users listing. */
-router.get('/', async (req, res) => {
-  res.status(200).json({ server: 'running' });
-});
+router.post('/', UserController.store);
 
 export default router;

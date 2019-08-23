@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import bcrypt from 'bcrypt';
 
 /**
  * @class
@@ -15,6 +16,7 @@ class User extends Model {
         nickname: Sequelize.STRING,
         email: Sequelize.STRING,
         phone: Sequelize.STRING,
+        password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
       },
       {
@@ -22,6 +24,13 @@ class User extends Model {
         tableName: 'tb_users',
       }
     );
+    this.addHook('beforeSave', async user => {
+      if (user.password) {
+        user.password_hash = await bcrypt.hash(user.password, 8);
+      }
+
+      return this;
+    });
   }
 }
 
