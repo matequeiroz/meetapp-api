@@ -1,34 +1,43 @@
-import app from "./App";
-import http from "http";
+import http from 'http';
+import app from './App';
 
+/**
+ * @author Mateus Queiroz
+ * This class is responsible
+ * for initializing our server.
+ */
 class Server {
   constructor() {
     this.server = http.createServer(app);
+    this.port = process.env.PORT;
     this.onListening = this.onListening.bind(this);
+    this.onError = this.onError.bind(this);
+    this.start = this.start.bind(this);
     this.start();
   }
 
+  // initialized or fails server
   start() {
-    this.server.listen(process.env.PORT || "3000");
-    this.server.on("error", this.onError);
-    this.server.on("listening", this.onListening);
+    this.server.listen(this.port || '3000');
+    this.server.on('error', this.onError);
+    this.server.on('listening', this.onListening);
   }
 
   onError(error) {
-    if (error.syscall !== "listen") {
+    if (error.syscall !== 'listen') {
       throw error;
     }
 
-    var bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
+    const bind =
+      typeof port === 'string' ? `Pipe ${this.port}` : `Port ${this.port}`;
 
-    // handle specific listen errors with friendly messages
     switch (error.code) {
-      case "EACCES":
-        console.error(bind + " requires elevated privileges");
+      case 'EACCES':
+        console.error(`${bind} requires elevated privileges`);
         process.exit(1);
         break;
-      case "EADDRINUSE":
-        console.error(bind + " is already in use");
+      case 'EADDRINUSE':
+        console.error(`${bind} is already in use`);
         process.exit(1);
         break;
       default:
@@ -37,8 +46,9 @@ class Server {
   }
 
   onListening() {
-    var addr = this.server.address();
-    var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+    const addr = this.server.address();
+    const bind =
+      typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
     console.log(`Application running on: ${bind}`);
   }
 }
